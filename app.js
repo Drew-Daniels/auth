@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const config = require('dotenv').config();
 const express = require("express");
 const { body, validationResult } = require('express-validator');
 const path = require("path");
@@ -8,7 +9,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const mongoDb = "mongodb+srv://m001-student:1QcirL2wvvUwusv9@sandbox.cwhyp.mongodb.net/authentication_db_dev?retryWrites=true&w=majority";
+const mongoDb = process.env.SECRET_KEY;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
